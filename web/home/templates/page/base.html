@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>{% block title %}Learn Web{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/course.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+    {#        <script>#}
+    {#            window.onload = function () {#}
+    {#                const body = document.body;#}
+    {#                body.style.backgroundImage = "url(" + "{% static 'image/nenn.jpg' %}" + ")";#}
+    {#                body.style.backgroundSize = "cover";#}
+    {#                body.style.backgroundPosition = "center";#}
+    {#                body.style.backgroundRepeat = "no-repeat";#}
+    {#            };#}
+    {#        </script>#}
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark-subtle">
+    <div class="container-fluid d-flex">
+        <a class="navbar-brand bi bi-house text-white-50 p-1" href="/">ChuBeDan</a>
+        <div class="collapse navbar-collapse justify-content-center ">
+            <form class="d-flex w-50 rounded-pill Larger shadow">
+                <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn text-white-50" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="dropdown flex ">
+            <a class="btn bi bi-person-circle" href="#" role="button" id="dropdownMenuLink"
+               data-bs-toggle="dropdown" aria-expanded="false">
+            </a>
+            <a class="bi bi-bell text-white-50 p-1"></a>
+            <a class="bi bi-chat text-white-50 "></a>
+            <ul class="dropdown-menu">
+                {% if user.is_authenticated %}
+                    <li class="">
+                        <a href="{% url 'update_user' %}">
+                            <button class="dropdown-item " type="button"><i class="bi bi-person "></i>Profile</button>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'logout' %}">
+                            <button class="dropdown-item " type="button"><i class="bi bi-person "></i>Logout</button>
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">
+                            <button class="dropdown-item " type="button"><i class="bi bi-person-add "></i>Login</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'register' %}">
+                            <button class="dropdown-item" type="button"><i class="bi bi-person-add "></i>Register
+                            </button>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid d-flex  ">
+    <div class="p-1 Regular  ">
+        <div class="">
+            <button class="btn text-white-50">
+                <a href="/" class="bi bi-house p-2 text-white-50"></a>Home
+            </button>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div>
+            <button class="btn btn-block text-white-50">
+                <a href="{% url 'course' %}" class="bi bi-file-earmark-text p-2 text-white-50"></a>Course
+            </button>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div>
+            <button class="btn btn-block text-white-50">
+                <a href="{% url 'about' %}" class="bi bi-chat p-2 text-white-50"></a>Messages
+            </button>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div>
+            <button class="btn btn-block text-white-50">
+                <a href="{% url 'about' %}" class="bi bi-bell p-2 text-white-50"></a>Notifications
+            </button>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div>
+            <button class="btn btn-block text-white-50">
+                <a href="{% url 'about' %}" class="bi bi-mortarboard p-2 text-white-50"></a>Welcome
+            </button>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown flex ">
+            <a class="bi bi-person-gear btn btn-block text-white-50 m-lg-2" href="#" role="button"
+               id="dropdownMenuLink"
+               data-bs-toggle="dropdown" aria-expanded="false"> Admin
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{% url 'course_list' %}">
+                        <button class="dropdown-item" type="button"><i class=""></i>Add Course</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'add_course' %}">
+                        <button class="dropdown-item" type="button"><i class=" "></i>List Course
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container border ">
+        {% block content %}
+
+        {% endblock %}
+        {#               <div class="card" style="width: 18rem;">#}
+        {#                <img src="../../static/image/logo.jpg" class="card-img-top" alt="...">#}
+        {#                <div class="card-body">#}
+        {#                    <h5 class="card-title">Card title</h5>#}
+        {#                    <p class="card-text">Some quick example text .</p>#}
+        {#                    <a href="#" class="btn btn-primary">Go somewhere</a>#}
+        {#                </div>#}
+        {#            </div>#}
+    </div>
+</div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+</html>
+

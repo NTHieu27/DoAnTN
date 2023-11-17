@@ -1,0 +1,34 @@
+{% extends 'page/base.html' %}
+
+{% block content %}
+    <h2>Course List</h2>
+    <ul>
+        {% for course in courses %}
+            <li>
+                <h3>{{ course.name }}</h3>
+                <p>{{ course.description }}</p>
+                {% if course.videos.all %}
+                    <h4>Videos:{{ objects.name }}</h4>
+                    <ul>
+                        {% for video in course.videos.all %}
+                            {#                            <p>video:  {{ video.course_video.url }}</p>#}
+                            <li>
+                                {#                                <iframe width="560" height="315" src= {{ video.course_video.url }} allowfullscreen></iframe>#}
+                                {% if video.course_video %}
+                                    <video width="320" height="240" controls>
+                                        <source src="{{ video.course_video.url }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <p>No video available</p>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No videos for this course.</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

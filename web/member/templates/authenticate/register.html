@@ -1,0 +1,16 @@
+{% extends 'page/base.html' %}
+
+{% block content %}
+
+    <div class="shadow p-4 mt-3 bg-body rounded">
+        <form action="{% url 'register' %}" method="POST" class="mt-5 ">
+
+            {% csrf_token %}
+            <br/>
+            {{ form.as_p }}
+            <br/><br/>
+            <input type="submit" class="btn btn-secondary">
+        </form>
+    </div>
+    <br/><br/>
+{% endblock %}

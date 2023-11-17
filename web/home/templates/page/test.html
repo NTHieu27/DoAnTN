@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>{% block title %}Learn Web{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/course.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+{#    <script>#}
+{#        window.onload = function () {#}
+{#            const body = document.body;#}
+{#            body.style.backgroundImage = "url(" + "{% static 'image/1nen.jpg' %}" + ")";#}
+{#            body.style.backgroundSize = "cover";#}
+{#            body.style.backgroundPosition = "center";#}
+{#            body.style.backgroundRepeat = "no-repeat";#}
+{#        };#}
+{#    </script>#}
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+    <div class="p-3 ">
+        <a class="fs-4 navbar-brand text-white-50" href="/"> <i class="bi bi-house p-2"></i> Learn</a>
+    </div>
+    <div class="container dropdown justify-content-end">
+        <button class="btn dropdown-toggle text-white-50 fs-6" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false"><i class="bi bi-person-circle p-2"></i> Account
+        </button>
+        <ul class="dropdown-menu ">
+            <li>
+                <a href="{% url 'login' %}">
+                    <button class="dropdown-item " type="button"><i class="bi bi-person p-2"></i>Sign In</button>
+                </a>
+            </li>
+            <li>
+                <button class="dropdown-item" type="button"><i class="bi bi-person-add p-2"></i>Register</button>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+
+
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+</html>
+

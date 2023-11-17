@@ -1,0 +1,23 @@
+{% extends 'page/base.html' %}
+
+{% block content %}
+    <form action="" method="POST" class="shadow p-5 mt-1 rounded w-50">
+        <h1 class="text-light">Login</h1>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label text-light">Username</label>
+            <br/>
+            <label>
+                <input type="text" class="form-control" name="username">
+            </label>
+        </div>
+        <div class="mb-3">
+            <label class="form-label text-light">Password</label>
+            <br/>
+            <label>
+                <input type="password" class="form-control" name="password">
+            </label>
+        </div>
+        <input type="submit" class="btn btn-secondary">
+    </form>
+{% endblock %}
