@@ -1,0 +1,28 @@
+{% extends 'page/base.html' %}
+<h1>{{ user.username }} Profile</h1>
+{% block content %}
+    <div class="container shadow p-4 mt-3 bg-body rounded ">
+        {% if user %}
+            <h1>{{ user.username }} Profile</h1>
+            <div class="profile-info flex-grow-1 ">
+                <div class="card p-3 mb-3 " style="width: 15rem;">
+                {% if user.image %}
+                    <img src="{{ user.image.url }}" alt="Profile Image" class=" ">
+                {% else %}
+                    <p>Không có hình ảnh</p>
+                {% endif %}
+                </div>
+                <p><strong>First name:</strong> {{ user.first_name }}</p>
+                <p><strong>Last name:</strong> {{ user.last_name }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Date of Birth:</strong> {{ user.date_of_birth }}</p>
+                <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+                <p><strong>Bio:</strong> {{ user.bio }}</p>
+                <p><strong>Website:</strong> {{ user.website }}</p>
+                <p><strong>Location:</strong> {{ user.location }}</p>
+                <p><strong>Date Modified:</strong> {{ user.date_modified }}</p>
+            </div>
+            <p><a class="btn btn-secondary mb-3" href="{% url 'edit_profile' %}">Edit</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

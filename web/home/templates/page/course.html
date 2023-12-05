@@ -1,66 +1,46 @@
-{% extends 'page/base.html' %}
+    {% extends 'page/base.html' %}
 
+    {% block title %}
+        Course
+    {% endblock %}
 
-
-{% block title %}
-    Course
-{% endblock %}
-
-{% block content %}
-        <div class="d-flex">
+    {% block content %}
+        <div class="d-flex flex-wrap">
             {% for item in object_list %}
-{#                <div class="media w-50 border ">#}
-{#                    <img src="{{ item.picture.url }}" class="card-img-top mr-3" alt="..." style="width: 150px">#}
-{#                    <div class="media-body">#}
-{#                        <h5 class="card-title " href="">{{ item.name }}</h5>#}
-{#                        <ul>#}
-{#                            <li>Educator <a href="">{{ item.educator }}</a></li>#}
-{#                            <li>Số Bài: {{ item.num_lessons }} bài</li>#}
-{#                        </ul>#}
-{#                        <p class="card-text">{{ item.excerpt }}</p>#}
-{#                        <a href="#" class="btn btn-primary">Go somewhere</a>#}
-{#                    </div>#}
-{#                </div>#}
-                <div class="card mt-5 p-3 " style="width: 15rem;">
-                    <img src="{{ item.picture.url }}" class="card-img-top" alt="..." >
+                <div class="card m-4  ml-auto" style="width: 15rem;">
+                    {% if item.picture %}
+                        <img src="{{ item.picture.url }}" class="card-img-top" alt="...">
+                    {% else %}
+                        <p>Không có hình ảnh</p>
+                    {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ item.name }}</h5>
                         <h6 class="card-title"> Educator: {{ item.educator }}</h6>
-                        <h6 class="card-title"> Lessons: {{ item.num_lessons }}</h6>
                         <p class="card-text">{{ item.excerpt }}</p>
-                        <a href="{% url 'course_list' %}" class="btn btn-primary w-100">Go</a>
+                           <form class="text-center " method="post" action="{% url 'join_course' pk=item.id %}">
+                                {% csrf_token %}
+                                {% if item.id in enrolled_courses %}
+                                    <button type="submit" class="btn btn-secondary btn-block w-50" >
+                                        Joined
+                                    </button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-secondary btn-block w-50">
+                                        Join
+                                    </button>
+                                {% endif %}
+                            </form>
+                    <br>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted "  >
+                                <i class="bi bi-book"></i> {{ item.num_lessons }} lesson
+                                <i class="bi bi-people p-1"></i>{{ item.course.count }} student
+                            </small>
+                        </div>
                     </div>
                 </div>
-         {% endfor %}
+{#                {% if forloop.counter|divisibleby:3 and not forloop.last %}#}
+{#                 <div class="w-100"></div>#}
+{#            {% endif %}#}
+            {% endfor %}
         </div>
-    <!-- Button trigger modal -->
-{#    <button id="m1" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#modalcourse">#}
-{#        Launch demo modal#}
-{#    </button>#}
-{##}
-{#    <!-- Modal -->#}
-{#    <div class="modal fade" id="modalcourse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
-{#        <div class="modal-dialog">#}
-{#            <div class="modal-content">#}
-{#                <div class="modal-header">#}
-{#                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>#}
-{#                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
-{#                </div>#}
-{#                <div class="modal-body">#}
-{#                    ...#}
-{#                </div>#}
-{#                <div class="modal-footer">#}
-{#                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>#}
-{#                    <button type="button" class="btn btn-primary">Save changes</button>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <script>#}
-{##}
-{#        window.onload = ()=> {#}
-{#            document.querySelector('#m1').click()#}
-{#        }#}
-{#    </script>#}
-
-{% endblock %}
+    {% endblock %}

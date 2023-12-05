@@ -1,0 +1,44 @@
+{% extends 'page/base.html' %}
+
+{% block content %}
+    {% if object_list %}
+        {% for course in object_list %}
+            <div class="card mt-3" style="max-width: 400px;">
+                <div class="p-3 d-flex mx-auto">
+                    <div class=" p-2 " style="width: 08rem;">
+                        {% if course.picture %}
+                            <img src="{{ course.picture.url }}" class="card-img-top" alt="...">
+                        {% else %}
+                            <p>Không có hình ảnh</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ course.name }}</h5>
+                            <p class="card-title"> Educator: {{ course.educator }}</p>
+                            <p class="card-title">Excerpt: {{ course.excerpt }}</p>
+                            <p class="card-title"
+                               style="max-height: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                Description: {{ course.description }}</p>
+                            <p class="card-title"> Lessons: {{ course.num_lessons }}</p>
+                            {#                            {% for video in course.videos.all %}#}
+                            {#                                {% if video.pk %}#}
+                            {#                                    <a href="{% url 'video_detail' pk=video.pk %}" class="btn btn-secondary">Video</a>#}
+                            {#                                {% else %}#}
+                            {#                                    <p>No valid primary key for this video</p>#}
+                            {#                                {% endif %}#}
+                            {#                            {% endfor %}#}
+
+                        </div>
+                        <a href="{% url 'course_detail' pk=course.pk %}" class="btn btn-secondary">View</a>
+                            <a href="{% url 'edit_course' pk=course.pk %}" class="btn btn-secondary">Edit</a>
+                            <a class="btn btn-danger">Delete</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <br/><br/>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

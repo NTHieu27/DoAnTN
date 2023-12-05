@@ -1,0 +1,15 @@
+{% extends 'page/base.html' %}
+
+{% block content %}
+
+<div class="mt-3 p-3 flex-grow-1">
+        <h5 class="">Edit Course: {{ course.name }}</h5>
+    <form method="post" enctype="multipart/form-data" class="mx-auto">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary" type="submit">Save</button>
+        <a href="{% url 'course_detail' pk=course.pk %}" class="btn btn-danger">Cancel</a>
+    </form>
+    <br>
+</div>
+{% endblock %}

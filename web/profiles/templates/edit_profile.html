@@ -1,0 +1,14 @@
+{% extends 'page/base.html' %}
+
+{% block content %}
+    <h1>Edit Profile</h1>
+    <div class="shadow p-4 mt-3 bg-body rounded w-50">
+        <form method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary" type="submit">Save</button>
+        </form>
+    </div>
+    <br>
+    <p><a class="btn btn-secondary mb-3" href="{% url 'profile' request.user.id %}">Back to Profile</a></p>
+{% endblock %}

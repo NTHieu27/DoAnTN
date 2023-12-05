@@ -1,0 +1,31 @@
+{% extends 'page/base.html' %}
+<h1>Detail of {{ user.username }}</h1>
+{% block content %}
+    <div class="shadow p-4 mt-3 bg-body rounded w-50 ">
+        {% if profile %}
+            <h1>{{ profile.username }} Profile</h1>
+            <div class="card-body">
+                <div class="card p-3 mb-3 d-flex" style="width: 15rem;">
+                    {% if profile.image %}
+                        <img src="{{ profile.image.url }}" alt="Profile Image" class=" ">
+                    {% else %}
+                        <p>Không có hình ảnh</p>
+                    {% endif %}
+                </div>
+                <p><strong>First name:</strong> {{ profile.first_name }}</p>
+                <p><strong>Last name:</strong> {{ profile.last_name }}</p>
+                <p><strong>Email:</strong> {{ profile.email }}</p>
+                <p><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</p>
+                <p><strong>Phone Number:</strong> {{ profile.phone_number }}</p>
+                <p><strong>Bio:</strong> {{ profile.bio }}</p>
+                <p><strong>Website:</strong> {{ profile.website }}</p>
+                <p><strong>Location:</strong> {{ profile.location }}</p>
+                <p><strong>Date Modified:</strong> {{ profile.date_modified }}</p>
+
+                <a class="btn btn-secondary">Delete</a>
+                <a class="btn btn-danger " href="{% url 'update_user' %}">Cancel</a>
+            </div>
+
+        {% endif %}
+    </div>
+{% endblock %}

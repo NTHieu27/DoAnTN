@@ -1,0 +1,20 @@
+{% extends 'page/base.html' %}
+
+{% block title %}
+    Course
+{% endblock %}
+
+{% block content %}
+   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    <!-- Các cài đặt PayPal của bạn điều nằm ở đây -->
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="{{ PAYPAL_RECEIVER_EMAIL }}">
+    <input type="hidden" name="item_name" value="Tên sản phẩm">
+    <input type="hidden" name="amount" value="10.00">
+    <input type="hidden" name="currency_code" value="USD">
+
+    <!-- Các trường biểu mẫu khác và nút submit điều nằm ở đây -->
+
+    <input type="submit" value="Thanh toán bằng PayPal">
+</form>
+{% endblock %}

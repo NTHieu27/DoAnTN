@@ -1,11 +1,24 @@
 {% extends 'page/base.html' %}
+{% load static %}
 
 {% block content %}
-
-
-
-
-
+    <div class="container d-flex mt-3">
+        <div class="flex-grow-1">
+            <h6 class="display-3 p-5"><strong>Welcome To LearnWeb</strong></h6>
+            <p class="lead text-muted mb-5 p-3" >
+                Explore an exciting journey of knowledge and discovery at LearnWeb.
+                <br>Enhance your skills and broaden your horizons
+                with our diverse range of courses.
+            </p>
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg mb-3">Explore Courses</a>
+{#            <p class="text-secondary">#}
+{#                Ready to start learning?#}
+{##}
+{#                Click the button above to explore<br> our courses and begin your educational adventure.#}
+{#            </p>#}
+        </div>
+       <div class="mt-5 ">
+            <img src="{% static 'image/1115.jpg' %}" alt="Ảnh chào mừng" class="img-fluid rounded" width="90%" height="500">
+        </div>
+    </div>
 {% endblock %}
-
-

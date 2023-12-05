@@ -1,12 +1,15 @@
 {% extends 'page/base.html' %}
 
 {% block content %}
-    <h2>Add Course</h2>
-    <form method="post" action="{% url 'add_course' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Course</button>
-    </form>
+
+    <div class="shadow p-4 mt-5 bg-body rounded flex-grow-1 w-75">
+      <h5 >Add Course</h5>
+        <form class="w-100" method="post" action="{% url 'add_course' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary" type="submit">Add Course</button>
+        </form>
+    </div>
     <br>
-    <a href="{% url 'course_list' %}">Back to Course List</a>
+
 {% endblock %}

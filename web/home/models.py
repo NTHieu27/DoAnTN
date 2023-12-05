@@ -1,4 +1,5 @@
 from django.db import models
+from profiles.models import User
 
 
 class Course(models.Model):
@@ -17,8 +18,13 @@ class Video(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(default="1")
     course_video = models.FileField(upload_to="course_video/", null=True, blank=True)
-    # youtube_url = models.URLField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='videos')
 
     def __str__(self):
         return self.title
+
+
+class User_Course(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+

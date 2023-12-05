@@ -1,16 +1,36 @@
 {% extends 'page/base.html' %}
 
 {% block content %}
+    {% if user %}
 
-    <div class="shadow p-4 mt-3 bg-body rounded">
-        <form action="{% url 'register' %}" method="POST" class="mt-5 ">
-
-            {% csrf_token %}
-            <br/>
-            {{ form.as_p }}
+        {% for user in profiles %}
+            <div class="container ">
+                <div class="card mt-3 mx-auto " style="max-width: 500px;">
+                    <div class="row g-0">
+                        <div class="card p-2 mb-3 h-25" style="width: 08rem;">
+                            {% if user.image %}
+                                <img src="{{ user.image.url }}" alt="Profile Image" class=" ">
+                            {% else %}
+                                <p>Không có hình ảnh</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ user.username }}</h5>
+                                <p class="card-text">@id: {{ user.id }}</p>
+                                <p class="card-text"><small class="text-body-secondary">Last
+                                    Update: {{ user.date_modified }}</small></p>
+                                {% if user.is_authenticated %}
+                                    <a class="btn btn-secondary" href="{% url 'user_detail' pk=user.pk %}">View</a>
+                                    <button class="btn btn-danger">Delete</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <br/><br/>
-            <input type="submit" class="btn btn-secondary">
-        </form>
-    </div>
-    <br/><br/>
+        {% endfor %}
+    {% endif %}
+
 {% endblock %}

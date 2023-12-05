@@ -1,0 +1,36 @@
+{% extends 'page/base.html' %}
+
+{% block content %}
+    <div class="card mt-3 shadow p-4 mt-3 bg-body rounded " style="max-width: 500px;">
+        {% if course %}
+            <h1> Course: {{ course.name }} </h1>
+            <div class="row g-0">
+                <div class="col-md">
+                    <div class="card-body">
+                        {% if course.picture %}
+                            <p><strong>Picture: </strong> {{ course.picture.url }}</p>
+                        {% else %}
+                            <p>Không có hình ảnh</p>
+                        {% endif %}
+
+                        <p class="card-title"><strong>Educator: </strong> {{ course.educator }}</p>
+                        <p class="card-title"><strong>Excerpt:</strong> {{ course.excerpt }}</p>
+                        <p class="card-title"><strong>Description:</strong> {{ course.description }}</p>
+                        <p class="card-title"><strong>Number lessons:</strong> {{ course.num_lessons }}</p>
+                        <br>
+                        <a class="btn btn-secondary" href="{% url 'edit_course' pk=course.pk %}">Edit</a>
+{#                           {% for video in course.videos.all %}#}
+{#                                {% if video.id %}#}
+{#                                    <a href="{% url 'video_detail'%}" class="btn btn-secondary">Video</a>#}
+{#                                {% else %}#}
+{#                                    <p>No valid primary key for this video</p>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+                        <a class="btn btn-secondary" href="{% url 'video_detail' pk=course.pk%}">View Video</a>
+                        <a class="btn btn-danger " href="{% url 'list_admin' %}">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

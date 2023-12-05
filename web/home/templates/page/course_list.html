@@ -1,34 +1,29 @@
 {% extends 'page/base.html' %}
 
 {% block content %}
-    <h2>Course List</h2>
-    <ul>
-        {% for course in courses %}
-            <li>
-                <h3>{{ course.name }}</h3>
-                <p>{{ course.description }}</p>
-                {% if course.videos.all %}
-                    <h4>Videos:{{ objects.name }}</h4>
-                    <ul>
-                        {% for video in course.videos.all %}
-                            {#                            <p>video:  {{ video.course_video.url }}</p>#}
-                            <li>
-                                {#                                <iframe width="560" height="315" src= {{ video.course_video.url }} allowfullscreen></iframe>#}
-                                {% if video.course_video %}
-                                    <video width="320" height="240" controls>
-                                        <source src="{{ video.course_video.url }}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                {% else %}
-                                    <p>No video available</p>
-                                {% endif %}
-                            </li>
+    <div class="container my-3 ml-3 ">
+        <h5 class="text-left"><a href="{% url 'course' %}" class="bi bi-arrow-left text-dark p-3"></a> {{ course.name }}</h5>
+        <div class="row">
+            <div class="text-center">
+                <h2 class="">Course content</h2>
+                <i class=""></i>1 section |
+                {{ course.num_lessons }} lesson
+            </div>
+            <div class="col-md-8 mx-auto">
+                <div class="list-group mt-3">
+                    {% if video_lesson %}
+                        {% for video in video_lesson %}
+                            <a href="{% url 'learn' pk=video.id %}"
+                               class="list-group-item list-group-item-action">
+                                {{ video.title }}
+                            </a>
                         {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>No videos for this course.</p>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+                    {% else %}
+                        <p class="list-group-item">Không có khóa học nào.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}

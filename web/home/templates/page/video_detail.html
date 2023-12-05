@@ -1,0 +1,27 @@
+{% extends 'page/base.html' %}
+
+{% block content %}
+    <div class="d-flex flex-wrap">
+        <h2>Videos: {{ course.name }}</h2>
+        {% if videos %}
+            {% for video in videos %}
+                <div class="video m-4" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Title:</strong> {{ video.title }}<br></h5>
+                        <h6 class="card-title">  <strong>Description:</strong> {{ video.description }}<br></h6>
+                    </div>
+                    {% if video.course_video %}
+                        <video width="320" height="240" controls>
+                            <source src="{{ video.course_video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% else %}
+                        <p>No video available</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No videos available for this course.</p>
+        {% endif %}
+    </div>
+{% endblock %}

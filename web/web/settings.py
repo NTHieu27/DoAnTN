@@ -5,8 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m#n#q1$q*_l!@iyhkomj83##1pphj^6o2@thq^^_$#v0jqf$#('
 DEBUG = True
 ALLOWED_HOSTS = []
-
-# Application definition
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -18,7 +17,10 @@ INSTALLED_APPS = [
     'home',
     'profiles',
     'member',
+    'pay',
     'embed_video',
+
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'profiles.User'
 WSGI_APPLICATION = 'web.wsgi.application'
 
 # Database
@@ -58,8 +61,12 @@ WSGI_APPLICATION = 'web.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '123123',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
@@ -81,7 +88,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalizationm n
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -100,10 +106,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

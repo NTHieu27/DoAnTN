@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Video
+from .models import Course, Video, User_Course
 
 
 class VideoInline(admin.TabularInline):
@@ -15,3 +15,5 @@ class CourseAdmin(admin.ModelAdmin):
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Video)
+admin.site.register(User_Course)
+

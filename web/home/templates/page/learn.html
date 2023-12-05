@@ -1,3 +1,92 @@
 {% extends "page/base.html" %}
 
+{% block content %}
+{#    <div class="container my-3 ml-3">#}
+{#    <div>#}
+{#        <h5 class="text-left"><a href="{% url 'course_list' pk=video_lesson.course.id %}"#}
+{#                                 class="bi bi-arrow-left text-dark p-3"></a> {{ video_lesson.course }}</h5>#}
+{#    </div>#}
+{#    <div class=" mt-5 p-3">#}
+{#        {% if video_lesson %}#}
+{#            <div class=" m-4 " style="width: 15rem;">#}
+{#                <div class="">#}
+{#                    <h4><strong> {{ video_lesson.title }}</strong></h4>#}
+{#                    <br>#}
+{#                    <video width="740" height="380" controls>#}
+{#                        <source src="{{ video_lesson.course_video.url }}" type="video/mp4">#}
+{#                        Your browser does not support the video tag.#}
+{#                    </video>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endif %}#}
+{#    </div>#}
+{#    <div class="">#}
+{#        <h5 class="">Lesson</h5>#}
+{#    </div>#}
+{#    <div class="">#}
+{#        <div class="list-group mt-3 small">#}
+{#            {% if list_lesson %}#}
+{#                {% for item in list_lesson %}#}
+{##}
+{#                    <a class="list-group-item list-group-item-action">#}
+{#                        {{ item.title }}#}
+{#                    </a>#}
+{#                {% endfor %}#}
+{#            {% else %}#}
+{#                <p class="list-group-item">Không có khóa học nào.</p>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+
+<div class="container d-flex mt-3 ">
+    <div class="flex-grow-1 ">
+        <div >
+            <h5 class="text-left"><a href="{% url 'course_list' pk=video_lesson.course.id %}"
+                                     class="bi bi-arrow-left text-dark p-3"></a> {{ video_lesson.course }}</h5>
+        </div>
+        <div class=" mt-5 p-3">
+            {% if video_lesson %}
+                <div class=" m-4" style="width: 70%; margin-right: 10px;">
+                    <div class="">
+                        <h4><strong> {{ video_lesson.title }}</strong></h4>
+                        <br>
+                        <video width="740" height="380" controls>
+                            <source src="{{ video_lesson.course_video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        {% if video_lesson %}
+            <div class="">
+                <h6>Hey Bro,</h6>
+                <h6>{{ video_lesson.description }}</h6>
+            </div>
+        {% endif %}
+    </div>
+    <div class=" " style="width: 30%;">
+        <div class="" >
+            <h5>Lesson</h5>
+        </div>
+        <div class="">
+            <div class="list-group mt-3 small">
+                {% if list_lesson %}
+                    {% for item in list_lesson %}
+                        <a href="{% url 'learn' pk=item.id %}" class="list-group-item list-group-item-action">
+                            {{ item.title }}
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <p class="list-group-item">Không có khóa học nào.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
+
+
+
